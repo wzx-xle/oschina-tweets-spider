@@ -12,7 +12,7 @@ public class App {
 
     static {
         log.info("start app");
-        shutdownHook();
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> log.info("stop app") ));
     }
 
     /**
@@ -24,16 +24,5 @@ public class App {
      */
     public static void main(String[] args) {
         System.out.println("Hello World!");
-    }
-
-    /**
-     * 应用关闭事件处理
-     */
-    private static void shutdownHook() {
-        Runtime.getRuntime().addShutdownHook(new Thread() {
-            public void run() {
-                log.info("stop app");
-            }
-        });
     }
 }
